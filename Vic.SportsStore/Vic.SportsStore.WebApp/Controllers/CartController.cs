@@ -15,54 +15,37 @@ namespace Vic.SportsStore.WebApp.Controllers
         public IProductsRepository ProductsRepository { get; set; }
             = new EFProductRepository();
 
-        public RedirectToRouteResult AddToCart(int productId, string returnUrl)
-        {
-            Product product = ProductsRepository
-                .Products
-                .FirstOrDefault(p => p.ProductId == productId);
-
-            if (product != null)
-            {
-                GetCart().AddItem(product, 1);
-            }
-
-            return RedirectToAction("Index", new { returnUrl });
-        }
-
-        public RedirectToRouteResult RemoveFromCart(int productId, string returnUrl)
-        {
-            Product product = ProductsRepository
-                .Products
-                .FirstOrDefault(p => p.ProductId == productId);
-
-            if (product != null)
-            {
-                GetCart().RemoveLine(product);
-            }
-
-            return RedirectToAction("Index", new { returnUrl });
-        }
-
-        public ViewResult Index(string returnUrl)
+        public ViewResult Index(Cart cart, string returnUrl)
         {
             return View(new CartIndexViewModel
             {
-                Cart = GetCart(),
-                ReturnUrl = returnUrl
+                ReturnUrl = returnUrl,
+                Cart = cart
             });
         }
 
-        private Cart GetCart()
+        public RedirectToRouteResult AddToCart(Cart cart, int productId, string returnUrl)
         {
-            Cart cart = (Cart)Session["Cart"];
+            Product product = ProductsRepository.Products
+            .FirstOrDefault(p => p.ProductId == productId);
 
-            if (cart == null)
+            if (product != null)
             {
-                cart = new Cart();
-                Session["Cart"] = cart;
+                cart.AddItem(product, 1);
             }
+            return RedirectToAction("Index", new { returnUrl });
+        }
 
-            return cart;
+        public RedirectToRouteResult RemoveFromCart(Cart cart, int productId, string returnUrl)
+        {
+            Product product = ProductsRepository.Products
+            .FirstOrDefault(p => p.ProductId == productId);
+
+            if (product != null)
+            {
+                cart.RemoveLine(product);
+            }
+            return RedirectToAction("Index", new { returnUrl });
         }
     }
 
