@@ -33,6 +33,7 @@ namespace Vic.SportsStore.WebApp.Controllers
             {
                 cart.AddItem(product, 1);
             }
+
             return RedirectToAction("Index", new { returnUrl });
         }
 
@@ -45,8 +46,15 @@ namespace Vic.SportsStore.WebApp.Controllers
             {
                 cart.RemoveLine(product);
             }
+
             return RedirectToAction("Index", new { returnUrl });
         }
+
+        public PartialViewResult Summary(Cart cart)
+        {
+            return PartialView(cart);
+        }
+
     }
 
 }
