@@ -44,5 +44,9 @@ namespace Vic.SportsStore.WebApp.Controllers
             }
         }
 
+        public ViewResult Create()
+        {
+            return View("Edit", new Product());
+        }
     }
 }
