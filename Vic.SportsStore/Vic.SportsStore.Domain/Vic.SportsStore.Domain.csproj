@@ -78,6 +78,7 @@
     <Compile Include="Concrete\EFProductRepository.cs" />
     <Compile Include="Concrete\EmailOrderProcessor.cs" />
     <Compile Include="Concrete\InMemoryProductRepository.cs" />
+    <Compile Include="Entities\AdminUser.cs" />
     <Compile Include="Entities\Cart.cs" />
     <Compile Include="Entities\Product.cs" />
     <Compile Include="Entities\ShippingDetails.cs" />
@@ -92,6 +93,10 @@
     <Compile Include="Migrations\202011292209102_ProductR2.cs" />
     <Compile Include="Migrations\202011292209102_ProductR2.designer.cs">
       <DependentUpon>202011292209102_ProductR2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202011292237298_AdminUser.cs" />
+    <Compile Include="Migrations\202011292237298_AdminUser.designer.cs">
+      <DependentUpon>202011292237298_AdminUser.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -109,6 +114,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202011292209102_ProductR2.resx">
       <DependentUpon>202011292209102_ProductR2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202011292237298_AdminUser.resx">
+      <DependentUpon>202011292237298_AdminUser.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
